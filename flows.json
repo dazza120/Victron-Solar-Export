@@ -1,0 +1,468 @@
+[
+    {
+        "id": "d964144e77efbe6c",
+        "type": "tab",
+        "label": "Export Solar",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f777fc90a24b666e",
+        "type": "comment",
+        "z": "d964144e77efbe6c",
+        "name": "Limit DVCC Charge Of Solar In UK Spring To Summer Months",
+        "info": "",
+        "x": 220,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "308bead6e66cfa39",
+        "type": "comment",
+        "z": "d964144e77efbe6c",
+        "name": "Return DVCC To Max Charging Of Battery In UK Spring To Summer Months @2130 for Off Peak Charge Times",
+        "info": "",
+        "x": 370,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6110b89057ff4844",
+        "type": "victron-output-settings",
+        "z": "d964144e77efbe6c",
+        "service": "com.victronenergy.settings",
+        "path": "/Settings/SystemSetup/MaxChargeCurrent",
+        "serviceObj": {
+            "service": "com.victronenergy.settings",
+            "name": "Venus settings"
+        },
+        "pathObj": {
+            "path": "/Settings/SystemSetup/MaxChargeCurrent",
+            "type": "float",
+            "name": "DVCC system max charge current (A DC)",
+            "writable": true
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 510,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "848c0bc58feec51a",
+        "type": "victron-output-ess",
+        "z": "d964144e77efbe6c",
+        "service": "com.victronenergy.settings",
+        "path": "/Settings/SystemSetup/MaxChargeCurrent",
+        "serviceObj": {
+            "service": "com.victronenergy.settings",
+            "name": "Venus settings"
+        },
+        "pathObj": {
+            "path": "/Settings/SystemSetup/MaxChargeCurrent",
+            "type": "float",
+            "name": "Charge current limit (A)",
+            "writable": true
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 580,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6b57a5c3425c7d5b",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "30A Charge Current From Solar @7AM",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "30",
+                "expressionType": "cron",
+                "expression": " 00 00 07 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "33e04f1375e86d0b"
+            ]
+        ]
+    },
+    {
+        "id": "ce6e78e7d608f5b3",
+        "type": "pushover",
+        "z": "d964144e77efbe6c",
+        "name": "",
+        "device": "",
+        "title": "Sucsessful Return To Max DVCC Charging",
+        "priority": "0",
+        "sound": "climb",
+        "url": "",
+        "url_title": "",
+        "html": false,
+        "x": 470,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "3729ca5e892b9e4d",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "40A Charge Current From Solar @6AM",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "40",
+                "expressionType": "cron",
+                "expression": " 00 00 06 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "33e04f1375e86d0b"
+            ]
+        ]
+    },
+    {
+        "id": "59e3dd2e5cfd4a6b",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "20A Charge Current From Solar @730AM",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "20",
+                "expressionType": "cron",
+                "expression": " 00 30 07 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "33e04f1375e86d0b"
+            ]
+        ]
+    },
+    {
+        "id": "81d94264db7296f2",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "10A Charge Current From Solar @830AM",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "10",
+                "expressionType": "cron",
+                "expression": " 00 30 08 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "33e04f1375e86d0b"
+            ]
+        ]
+    },
+    {
+        "id": "6302aff0aa363816",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "5A Charge Current From Solar @9AM",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "5",
+                "expressionType": "cron",
+                "expression": " 00 00 09 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "33e04f1375e86d0b"
+            ]
+        ]
+    },
+    {
+        "id": "584cff24f4b86d0b",
+        "type": "cronplus",
+        "z": "d964144e77efbe6c",
+        "name": "Return DVCC To Max Charging @2130",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "num",
+                "payload": "-1",
+                "expressionType": "cron",
+                "expression": " 00 30 21 * APR,MAY,JUN,JUL,AUG,SEP *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "6110b89057ff4844",
+                "ce6e78e7d608f5b3"
+            ]
+        ]
+    },
+    {
+        "id": "41739bc00c392785",
+        "type": "pushover",
+        "z": "d964144e77efbe6c",
+        "name": "",
+        "device": "",
+        "title": "Sucssesfull Solar Charge Limit",
+        "priority": "1",
+        "sound": "falling",
+        "url": "https://pushover.net/email/hrdpyqp5vb",
+        "url_title": "Sucssesfull Solar Solar Charge Limit",
+        "html": false,
+        "x": 530,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cc60b5af82e6581e",
+        "type": "victron-output-settings",
+        "z": "d964144e77efbe6c",
+        "service": "com.victronenergy.settings",
+        "path": "/Settings/SystemSetup/MaxChargeCurrent",
+        "serviceObj": {
+            "service": "com.victronenergy.settings",
+            "name": "Venus settings"
+        },
+        "pathObj": {
+            "path": "/Settings/SystemSetup/MaxChargeCurrent",
+            "type": "float",
+            "name": "DVCC system max charge current (A DC)",
+            "writable": true
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "08f94d7d03b06c14",
+        "type": "victron-input-vebus",
+        "z": "d964144e77efbe6c",
+        "service": "com.victronenergy.vebus/276",
+        "path": "/Alarms/GridLost",
+        "serviceObj": {
+            "service": "com.victronenergy.vebus/276",
+            "name": "Quattro-II 48/5000/70-2x50"
+        },
+        "pathObj": {
+            "path": "/Alarms/GridLost",
+            "type": "enum",
+            "name": "Grid lost alarm",
+            "enum": {
+                "0": "Ok",
+                "2": "Alarm"
+            }
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": false,
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "302d2edc1462e742"
+            ]
+        ]
+    },
+    {
+        "id": "724aa01d6ebf2b4f",
+        "type": "switch",
+        "z": "d964144e77efbe6c",
+        "name": "if global.grid_down = 2",
+        "property": "grid_down",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "4bc99a673652f11b"
+            ]
+        ]
+    },
+    {
+        "id": "4bc99a673652f11b",
+        "type": "change",
+        "z": "d964144e77efbe6c",
+        "name": "Set payload to -1 to turn off DVCC limit",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "-1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 420,
+        "wires": [
+            [
+                "cc60b5af82e6581e"
+            ]
+        ]
+    },
+    {
+        "id": "302d2edc1462e742",
+        "type": "change",
+        "z": "d964144e77efbe6c",
+        "name": "set global.grid_down",
+        "rules": [
+            {
+                "t": "set",
+                "p": "grid_down",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "724aa01d6ebf2b4f"
+            ]
+        ]
+    },
+    {
+        "id": "33e04f1375e86d0b",
+        "type": "switch",
+        "z": "d964144e77efbe6c",
+        "name": "if grid_down",
+        "property": "grid_down",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "2",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "848c0bc58feec51a",
+                "41739bc00c392785"
+            ]
+        ]
+    }
+]
