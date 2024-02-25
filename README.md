@@ -1,4 +1,4 @@
-# Victron-Solar-Export
+# Victron-Solar-Export-NodeRED
 UK Spring to Summer Solar Export What Solar You Don't Use For Victron
 
 This is a UK Mid Spring Solar Export enabled by lowering the DVCC in NodeRED during the summer months april the 1st to September the 1st (I had to include September to get the whole of August ) You can change the cron to match your country or increse the months i have left March out as its not one of the best month for solar in the UK. This does not force solar export it merely stops the batteries from taking all the solar which allows export 
